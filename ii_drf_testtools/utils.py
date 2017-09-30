@@ -17,6 +17,7 @@ class GenericAPITest(object):
     # internal variables
     _anonymous_client = None
     _authenticated_client = None
+    _user = None
 
     def get_api_url(self):
         if self.api_url is None:  # pragma: no cover
@@ -27,7 +28,9 @@ class GenericAPITest(object):
         """
         Returns user object
         """
-        return UserFactory()
+        if self._user is None:
+            self._user = UserFactory()
+        return self._user
 
     def get_expected_status_code(self, status_dict, method, status_code=None):
         if status_code:
@@ -73,7 +76,7 @@ class GenericAPITest(object):
             self._authenticated_client.force_authenticate(user=self.get_user())
         return self._authenticated_client
 
-    def test_returns_status_get(self, status_code=None):
+    def test_status_on_anonymous_get(self, status_code=None):
         """
         Test the correct response status_code for a GET request
         that is not authenticated
@@ -83,7 +86,7 @@ class GenericAPITest(object):
         self.assert_status_code(
             response, self.status_codes_anonymous, 'GET', status_code)
 
-    def test_returns_status_delete(self, status_code=None):
+    def test_status_on_anonymous_delete(self, status_code=None):
         """
         Test the correct response status_code for a DELETE request
         that is not authenticated
@@ -93,7 +96,7 @@ class GenericAPITest(object):
         self.assert_status_code(
             response, self.status_codes_anonymous, 'DELETE', status_code)
 
-    def test_returns_status_post(self, status_code=None):
+    def test_status_on_anonymous_post(self, status_code=None):
         """
         Test the correct response status_code for a POST request
         that is not authenticated
@@ -103,7 +106,7 @@ class GenericAPITest(object):
         self.assert_status_code(
             response, self.status_codes_anonymous, 'POST', status_code)
 
-    def test_returns_status_patch(self, status_code=None):
+    def test_status_on_anonymous_patch(self, status_code=None):
         """
         Test the correct response status_code for a PATCH request
         that is not authenticated
@@ -113,7 +116,7 @@ class GenericAPITest(object):
         self.assert_status_code(
             response, self.status_codes_anonymous, 'PATCH', status_code)
 
-    def test_returns_status_put(self, status_code=None):
+    def test_status_on_anonymous_put(self, status_code=None):
         """
         Test the correct response status_code for a PUT request
         that is not authenticated
@@ -123,7 +126,7 @@ class GenericAPITest(object):
         self.assert_status_code(
             response, self.status_codes_anonymous, 'PUT', status_code)
 
-    def test_returns_status_on_authenticated_get(self, status_code=None):
+    def test_status_on_authenticated_get(self, status_code=None):
         """
         Test the correct response status_code for a GET request
         that is authenticated
@@ -133,7 +136,7 @@ class GenericAPITest(object):
         self.assert_status_code(
             response, self.status_codes_authenticated, 'GET', status_code)
 
-    def test_returns_status_on_authenticated_delete(self, status_code=None):
+    def test_status_on_authenticated_delete(self, status_code=None):
         """
         Test the correct response status_code for a DELETE request
         that is authenticated
@@ -143,7 +146,7 @@ class GenericAPITest(object):
         self.assert_status_code(
             response, self.status_codes_authenticated, 'DELETE', status_code)
 
-    def test_returns_status_on_authenticated_post(self, status_code=None,
+    def test_status_on_authenticated_post(self, status_code=None,
                                                   data=None):
         """
         Test the correct response status_code for a POST request
@@ -154,8 +157,7 @@ class GenericAPITest(object):
         self.assert_status_code(
             response, self.status_codes_authenticated, 'POST', status_code)
 
-    def test_returns_status_on_authenticated_patch(self, status_code=None,
-                                                   data=None):
+    def test_status_on_authenticated_patch(self, status_code=None, data=None):
         """
         Test the correct response status_code for a PATCH request
         that is authenticated
@@ -165,8 +167,7 @@ class GenericAPITest(object):
         self.assert_status_code(
             response, self.status_codes_authenticated, 'PATCH', status_code)
 
-    def test_returns_status_on_authenticated_put(self, status_code=None,
-                                                 data=None):
+    def test_status_on_authenticated_put(self, status_code=None, data=None):
         """Test the correct response status_code for a PUT request
            that is authenticated.
         """
