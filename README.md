@@ -30,14 +30,14 @@ Let's take a look at a quick example of using ii_drf_testtools.
 
 This test will do the following 10 tests:
 
-    - An anonymous GET request on /api/1.0/users/ returns status 403
-    - An anonymous DELETE request on /api/1.0/users/ returns status 403
-    - An anonymous POST request on /api/1.0/users/ returns status 403
-    - An anonymous PATCH request on /api/1.0/users/ returns status 403
-    - An anonymous PUT request on /api/1.0/users/ returns status 403
+    - Assert an anonymous GET request on /api/1.0/users/ equals status 403
+    - Assert an anonymous DELETE request on /api/1.0/users/ equals status 403
+    - Assert an anonymous POST request on /api/1.0/users/ equals status 403
+    - Assert an anonymous PATCH request on /api/1.0/users/ equals status 403
+    - Assert an anonymous PUT request on /api/1.0/users/ equals status 403
 
-    - An authenticated GET request on /api/1.0/users/ returns status 200
-    - An authenticated DELETE request on /api/1.0/users/ returns status 405
-    - An authenticated POST request on /api/1.0/users/ returns status 405
-    - An authenticated PATCH request on /api/1.0/users/ returns status 405
-    - An authenticated PUT request on /api/1.0/users/ returns status 405
+    - Assert an authenticated GET request on /api/1.0/users/ equals status 200
+    - Assert an authenticated DELETE request on /api/1.0/users/ equals status 405
+    - Assert an authenticated POST request on /api/1.0/users/ equals status 405
+    - Assert an authenticated PATCH request on /api/1.0/users/ equals status 405
+    - Assert an authenticated PUT request on /api/1.0/users/ equals status 405
