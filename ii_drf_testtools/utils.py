@@ -1,10 +1,11 @@
+from ii_drf_testtools import mixins
 from ii_drf_testtools.settings import testtools_settings
 from rest_framework.test import APIClient
 
 UserFactory = testtools_settings.USER_FACTORY
 
 
-class BaseAPITest(object):
+class GenericAPITest(object):
 
     # public variables
     api_url = None
@@ -28,7 +29,7 @@ class BaseAPITest(object):
         """
         return UserFactory()
 
-    def get_response_code(self, status_dict, method, status_code=None):
+    def get_expected_status_code(self, status_dict, method, status_code=None):
         if status_code:
             return status_code
         try:
@@ -44,7 +45,7 @@ class BaseAPITest(object):
     def assert_status_code(self, response, status_dict, method,
                            status_code=None):
 
-        expected_status_code = self.get_response_code(
+        expected_status_code = self.get_expected_status_code(
             status_dict, method, status_code)
 
         assert response.status_code == expected_status_code, (
@@ -175,7 +176,7 @@ class BaseAPITest(object):
             response, self.status_codes_authenticated, 'PUT', status_code)
 
 
-class BaseListAPITest(BaseAPITest):
+class ListAPITest(mixins.ListModelMixin, GenericAPITest):
     status_codes_anonymous = testtools_settings.DEFAULT_STATUS_LIST_ANONYMOUS
     status_codes_authenticated = (
         testtools_settings.DEFAULT_STATUS_LIST_AUTHENTICATED)

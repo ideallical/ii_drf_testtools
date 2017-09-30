@@ -15,11 +15,11 @@ Install using `pip`...
 Let's take a look at a quick example of using ii_drf_testtools.
 
     import pytest
-    from ii_drf_testtools.utils import BaseListAPITest
+    from ii_drf_testtools.utils import ListAPITest
 
 
     @pytest.mark.django_db(transaction=True)
-    class TestUserList(BaseListAPITest):
+    class TestUserList(ListAPITest):
         api_url = reverse('rest_api:users:list', kwargs={'version': '1.0'})
 
         status_codes_anonymous = {'ALL': 403}
