@@ -15,11 +15,13 @@ Install using `pip`...
 Let's take a look at a quick example of using ii_drf_testtools.
 
     import pytest
+
     from ii_drf_testtools.utils import ListAPITest
+    from news.tests.factories import NewsItemFactory
 
 
     @pytest.mark.django_db(transaction=True)
-    class TestUserList(ListAPITest):
+    class TestNewsList(ListAPITest):
         api_url = reverse('rest_api:news:list', kwargs={'version': '1.0'})
 
         status_codes_anonymous = {'ALL': 403}
