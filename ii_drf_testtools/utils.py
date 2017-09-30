@@ -1,5 +1,4 @@
 from ii_drf_testtools.settings import testtools_settings
-from rest_framework.reverse import reverse
 from rest_framework.test import APIClient
 
 UserFactory = testtools_settings.USER_FACTORY
@@ -165,7 +164,8 @@ class BaseAPITest(object):
         self.assert_status_code(
             response, self.status_codes_authenticated, 'PATCH', status_code)
 
-    def test_returns_status_on_authenticated_put(self, status_code=None, data=None):
+    def test_returns_status_on_authenticated_put(self, status_code=None,
+                                                 data=None):
         """Test the correct response status_code for a PUT request
            that is authenticated.
         """

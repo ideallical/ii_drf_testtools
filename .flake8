@@ -6,4 +6,4 @@ exclude=
     build,
     dist,
     ii_drf_testtools.egg-info
-max-complexity=5
+max-complexity=6
