@@ -147,7 +147,7 @@ class GenericAPITest(object):
             response, self.status_codes_authenticated, 'DELETE', status_code)
 
     def test_status_on_authenticated_post(self, status_code=None,
-                                                  data=None):
+                                          data=None):
         """
         Test the correct response status_code for a POST request
         that is authenticated
