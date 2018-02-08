@@ -24,7 +24,7 @@ from news.tests.factories import NewsItemFactory
 @pytest.mark.django_db(transaction=True)
 class TestNewsList(ListAPITest):
     api_url = reverse('rest_api:news:list', kwargs={'version': '1.0'})
-
+    only_custom = False
     status_codes_anonymous = {'ALL': 403}
     status_codes_authenticated = {'ALL': 405, 'GET': 200}
 
