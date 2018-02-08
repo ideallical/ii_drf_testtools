@@ -11,24 +11,24 @@ class ListModelMixin(object):
         raise NotImplementedError(
             'Please implement assert_list_response_authenticated')
 
-    def test_data_on_anonymous_get(self):
+    def test_data_on_anonymous_get(self, **kwargs):
         if not self.only_custom:
             expected_status_code = self.get_expected_status_code(
-                self.status_codes_anonymous, 'GET')
+                self.status_codes_anonymous, 'GET', **kwargs)
 
             if expected_status_code == 200:
                 self.setup_list_data()
                 response = self.get_anonymous_client().get(
-                    path=self.get_api_url(), format=self.return_format)
+                    path=self.get_api_url(**kwargs), format=self.return_format)
                 self.assert_list_response_anonymous(response)
 
-    def test_data_on_authenticated_get(self):
+    def test_data_on_authenticated_get(self, **kwargs):
         if not self.only_custom:
             expected_status_code = self.get_expected_status_code(
-                self.status_codes_authenticated, 'GET')
+                self.status_codes_authenticated, 'GET', **kwargs)
 
             if expected_status_code == 200:
                 self.setup_list_data()
                 response = self.get_authenticated_client().get(
-                    path=self.get_api_url(), format=self.return_format)
+                    path=self.get_api_url(**kwargs), format=self.return_format)
                 self.assert_list_response_authenticated(response)
