@@ -12,7 +12,11 @@ II_DRF_TESTTOOLS = {
     # list
     'DEFAULT_STATUS_LIST_ANONYMOUS': {'ALL': 403, },
     'DEFAULT_STATUS_LIST_AUTHENTICATED': {'ALL': 405, 'GET': 200},
+    # create
+    'DEFAULT_STATUS_CREATE_ANONYMOUS': {'ALL': 403, },
+    'DEFAULT_STATUS_CREATE_AUTHENTICATED': {'ALL': 405, 'POST': 400},
 }
+
 
 This module provides the `testtool_setting` object, that is used to access
 ideallical DRF testtools settings, checking for user settings first, then
@@ -33,6 +37,9 @@ class TestToolsSettings(PackageSettings):
         # list
         'DEFAULT_STATUS_LIST_ANONYMOUS': {'ALL': 403, },
         'DEFAULT_STATUS_LIST_AUTHENTICATED': {'ALL': 405, 'GET': 200},
+        # create
+        'DEFAULT_STATUS_CREATE_ANONYMOUS': {'ALL': 403, },
+        'DEFAULT_STATUS_CREATE_AUTHENTICATED': {'ALL': 405, 'POST': 400},
     }
     IMPORT_STRINGS = ('USER_FACTORY', )
 

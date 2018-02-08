@@ -9,6 +9,7 @@ class GenericAPITest(object):
 
     # public variables
     api_url = None
+    only_custom = False  # only test the custom methods (set to True to speed up testing)  # noqa
     return_format = testtools_settings.RETURN_FORMAT
     status_codes_anonymous = testtools_settings.DEFAULT_STATUS_BASE_ANONYMOUS
     status_codes_authenticated = (
@@ -81,70 +82,78 @@ class GenericAPITest(object):
         Test the correct response status_code for a GET request
         that is not authenticated
         """
-        response = self.get_anonymous_client().get(
-            path=self.get_api_url(), format=self.return_format)
-        self.assert_status_code(
-            response, self.status_codes_anonymous, 'GET', status_code)
+        if not self.only_custom:
+            response = self.get_anonymous_client().get(
+                path=self.get_api_url(), format=self.return_format)
+            self.assert_status_code(
+                response, self.status_codes_anonymous, 'GET', status_code)
 
     def test_status_on_anonymous_delete(self, status_code=None):
         """
         Test the correct response status_code for a DELETE request
         that is not authenticated
         """
-        response = self.get_anonymous_client().delete(
-            path=self.get_api_url(), format=self.return_format)
-        self.assert_status_code(
-            response, self.status_codes_anonymous, 'DELETE', status_code)
+        if not self.only_custom:
+            response = self.get_anonymous_client().delete(
+                path=self.get_api_url(), format=self.return_format)
+            self.assert_status_code(
+                response, self.status_codes_anonymous, 'DELETE', status_code)
 
     def test_status_on_anonymous_post(self, status_code=None):
         """
         Test the correct response status_code for a POST request
         that is not authenticated
         """
-        response = self.get_anonymous_client().post(
-            path=self.get_api_url(), format=self.return_format)
-        self.assert_status_code(
-            response, self.status_codes_anonymous, 'POST', status_code)
+        if not self.only_custom:
+            response = self.get_anonymous_client().post(
+                path=self.get_api_url(), format=self.return_format)
+            self.assert_status_code(
+                response, self.status_codes_anonymous, 'POST', status_code)
 
     def test_status_on_anonymous_patch(self, status_code=None):
         """
         Test the correct response status_code for a PATCH request
         that is not authenticated
         """
-        response = self.get_anonymous_client().patch(
-            path=self.get_api_url(), format=self.return_format)
-        self.assert_status_code(
-            response, self.status_codes_anonymous, 'PATCH', status_code)
+        if not self.only_custom:
+            response = self.get_anonymous_client().patch(
+                path=self.get_api_url(), format=self.return_format)
+            self.assert_status_code(
+                response, self.status_codes_anonymous, 'PATCH', status_code)
 
     def test_status_on_anonymous_put(self, status_code=None):
         """
         Test the correct response status_code for a PUT request
         that is not authenticated
         """
-        response = self.get_anonymous_client().put(
-            path=self.get_api_url(), format=self.return_format)
-        self.assert_status_code(
-            response, self.status_codes_anonymous, 'PUT', status_code)
+        if not self.only_custom:
+            response = self.get_anonymous_client().put(
+                path=self.get_api_url(), format=self.return_format)
+            self.assert_status_code(
+                response, self.status_codes_anonymous, 'PUT', status_code)
 
     def test_status_on_authenticated_get(self, status_code=None):
         """
         Test the correct response status_code for a GET request
         that is authenticated
         """
-        response = self.get_authenticated_client().get(
-            path=self.get_api_url(), format=self.return_format)
-        self.assert_status_code(
-            response, self.status_codes_authenticated, 'GET', status_code)
+        if not self.only_custom:
+            response = self.get_authenticated_client().get(
+                path=self.get_api_url(), format=self.return_format)
+            self.assert_status_code(
+                response, self.status_codes_authenticated, 'GET', status_code)
 
     def test_status_on_authenticated_delete(self, status_code=None):
         """
         Test the correct response status_code for a DELETE request
         that is authenticated
         """
-        response = self.get_authenticated_client().delete(
-            path=self.get_api_url(), format=self.return_format)
-        self.assert_status_code(
-            response, self.status_codes_authenticated, 'DELETE', status_code)
+        if not self.only_custom:
+            response = self.get_authenticated_client().delete(
+                path=self.get_api_url(), format=self.return_format)
+            self.assert_status_code(
+                response, self.status_codes_authenticated, 'DELETE',
+                status_code)
 
     def test_status_on_authenticated_post(self, status_code=None,
                                           data=None):
@@ -152,32 +161,42 @@ class GenericAPITest(object):
         Test the correct response status_code for a POST request
         that is authenticated
         """
-        response = self.get_authenticated_client().post(
-            path=self.get_api_url(), data=data, format=self.return_format)
-        self.assert_status_code(
-            response, self.status_codes_authenticated, 'POST', status_code)
+        if not self.only_custom:
+            response = self.get_authenticated_client().post(
+                path=self.get_api_url(), data=data, format=self.return_format)
+            self.assert_status_code(
+                response, self.status_codes_authenticated, 'POST', status_code)
 
     def test_status_on_authenticated_patch(self, status_code=None, data=None):
         """
         Test the correct response status_code for a PATCH request
         that is authenticated
         """
-        response = self.get_authenticated_client().patch(
-            path=self.get_api_url(), data=data, format=self.return_format)
-        self.assert_status_code(
-            response, self.status_codes_authenticated, 'PATCH', status_code)
+        if not self.only_custom:
+            response = self.get_authenticated_client().patch(
+                path=self.get_api_url(), data=data, format=self.return_format)
+            self.assert_status_code(
+                response, self.status_codes_authenticated, 'PATCH',
+                status_code)
 
     def test_status_on_authenticated_put(self, status_code=None, data=None):
         """Test the correct response status_code for a PUT request
            that is authenticated.
         """
-        response = self.get_authenticated_client().put(
-            path=self.get_api_url(), data=data, format=self.return_format)
-        self.assert_status_code(
-            response, self.status_codes_authenticated, 'PUT', status_code)
+        if not self.only_custom:
+            response = self.get_authenticated_client().put(
+                path=self.get_api_url(), data=data, format=self.return_format)
+            self.assert_status_code(
+                response, self.status_codes_authenticated, 'PUT', status_code)
 
 
 class ListAPITest(mixins.ListModelMixin, GenericAPITest):
     status_codes_anonymous = testtools_settings.DEFAULT_STATUS_LIST_ANONYMOUS
     status_codes_authenticated = (
         testtools_settings.DEFAULT_STATUS_LIST_AUTHENTICATED)
+
+
+class CreateAPITest(GenericAPITest):
+    status_codes_anonymous = testtools_settings.DEFAULT_STATUS_CREATE_ANONYMOUS
+    status_codes_authenticated = (
+        testtools_settings.DEFAULT_STATUS_CREATE_AUTHENTICATED)
