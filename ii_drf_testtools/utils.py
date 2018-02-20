@@ -17,7 +17,6 @@ class GenericAPITest(object):
 
     # internal variables
     _anonymous_client = None
-    _authenticated_client = None
     _user = None
 
     def get_api_url(self, **kwargs):
@@ -68,14 +67,16 @@ class GenericAPITest(object):
             self._anonymous_client = APIClient()
         return self._anonymous_client
 
-    def get_authenticated_client(self):
+    def get_authenticated_client(self, user=None):
         """
         Returns authenticated client with a normal user
         """
-        if self._authenticated_client is None:
-            self._authenticated_client = APIClient()
-            self._authenticated_client.force_authenticate(user=self.get_user())
-        return self._authenticated_client
+        if user is None:
+            user = self.get_user()
+
+        _authenticated_client = APIClient()
+        _authenticated_client.force_authenticate(user=user)
+        return _authenticated_client
 
     def test_status_on_anonymous_get(self, status_code=None, **kwargs):
         """
