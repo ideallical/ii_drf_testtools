@@ -222,3 +222,10 @@ class DeleteAPITest(GenericAPITest):
     status_codes_anonymous = testtools_settings.DEFAULT_STATUS_DELETE_ANONYMOUS
     status_codes_authenticated = (
         testtools_settings.DEFAULT_STATUS_DELETE_AUTHENTICATED)
+
+
+class RetrieveAPITest(GenericAPITest):
+    status_codes_anonymous = (
+        testtools_settings.DEFAULT_STATUS_RETRIEVE_ANONYMOUS)
+    status_codes_authenticated = (
+        testtools_settings.DEFAULT_STATUS_RETRIEVE_AUTHENTICATED)
