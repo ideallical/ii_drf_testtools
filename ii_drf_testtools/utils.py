@@ -229,3 +229,9 @@ class RetrieveAPITest(GenericAPITest):
         testtools_settings.DEFAULT_STATUS_RETRIEVE_ANONYMOUS)
     status_codes_authenticated = (
         testtools_settings.DEFAULT_STATUS_RETRIEVE_AUTHENTICATED)
+
+
+class UpdateAPITest(GenericAPITest):
+    status_codes_anonymous = testtools_settings.DEFAULT_STATUS_UPDATE_ANONYMOUS
+    status_codes_authenticated = (
+        testtools_settings.DEFAULT_STATUS_UPDATE_AUTHENTICATED)
