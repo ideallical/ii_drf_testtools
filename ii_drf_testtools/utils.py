@@ -9,7 +9,7 @@ class GenericAPITest(object):
 
     # public variables
     api_url = None
-    only_custom = False  # only test the custom methods (set to True to speed up testing)  # noqa
+    only_custom = False  # only test the custom methods (set to True to speed up testing)
     return_format = testtools_settings.RETURN_FORMAT
     status_codes_anonymous = testtools_settings.DEFAULT_STATUS_BASE_ANONYMOUS
     status_codes_authenticated = (
@@ -21,7 +21,7 @@ class GenericAPITest(object):
 
     def get_api_url(self, **kwargs):
         if self.api_url is None:  # pragma: no cover
-            raise NotImplemented('Please provide url')
+            raise NotImplementedError('Please provide url')
         return self.api_url
 
     def get_user(self):

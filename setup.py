@@ -55,7 +55,7 @@ setup(
     keywords=['testing', 'drf'],
     license='BSD',
     install_requires=[
-        'ii-django-package-settings>=0.1',
+        'ii-django-package-settings>=0.2',
     ],
     packages=['ii_drf_testtools'],
     zip_safe=False

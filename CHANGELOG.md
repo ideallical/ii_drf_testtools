@@ -1,3 +1,7 @@
+0.3 (2020-04-12)
+----------------
+ - Made package Django3 compatible and Python3 only
+
 0.2 (2018-02-08)
 ----------------
 
